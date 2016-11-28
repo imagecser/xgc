@@ -17,7 +17,7 @@ sys.setdefaultencoding('utf-8')
 
 cerurl = 'http://cer.nju.edu.cn/amserver/UI/Login'
 capurl = 'http://cer.nju.edu.cn/amserver/verify/image.jsp'
-maddr = ['lestdawn@163.com']
+maddr= ['lestdawn@163.com']
 logfile, postfile = 'main.log', 'post.log'
 opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookielib.CookieJar()))
 
@@ -82,12 +82,24 @@ def get_th():
 
 
 def rewrite(post_read):
+    icserpage = []
     page = re.findall(re.compile('h.+htm'), post_read)
-    for ipage in page:
-        ipageread = opener.open(ipage).read()
-        ipageread = str(ipageread).replace('href="/', 'href="http://xgc.nju.edu.cn/').replace('src="/', 'src="http://xgc.nju.edu.cn/').replace("src='/", "src='http://xgc.nju.edu.cn/").replace("'src', '/", "'src', 'http://xgc.nju.edu.cn/")
-        ipage = re.findall(re.compile('psp/.+/page'), ipage)[0].replace('/', '')
-        open('html/' + ipage + '.htm', 'w').write(ipageread)
+    for iurl in range(len(page)):
+        iresponse = opener.open(page[iurl]).read()
+        iresponse = str(iresponse).replace('\n', '')
+        ititle = re.findall('<html.+?</title>', iresponse)
+        rew = re.sub('> +? <', '>\n<', ititle[0])
+        ibody = re.findall('<div frag=.+?</div>.+?</div>.+?</td>', iresponse)
+        rew += '\n' + re.sub('> +? <', '>\n<', ibody[1]) + '\n' + '</body></html>'
+        rew = rew.replace('href="/',
+                          'href="http://xgc.nju.edu.cn/').replace('src="/',
+                                                                  'src="http://xgc.nju.edu.cn/').replace(
+            "src='/", "src='http://xgc.nju.edu.cn/").replace("'src', '/", "'src', 'http://xgc.nju.edu.cn/")
+        rewpath = 'xgc/c' + str(int(time.time())) + '.html'
+        open(rewpath, 'w').write(rew)
+        icserpage.append(rewpath)
+        post_read = post_read.replace(page[iurl], 'http://www.icser.me/' + icserpage[iurl])
+    return post_read
 
 
 def comp(page):
@@ -116,7 +128,7 @@ def join():
         post += item
     if post.replace(' ', '').replace('\n', '') != '':
         post = post.replace('\n\n', '\n')
-        rewrite(post)
+        post = rewrite(post)
         try:
             send_(maddr, post, u"学工园地更新动态")
             log(postfile, post, 'INFO')
