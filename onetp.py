@@ -82,8 +82,8 @@ def comp(page):
     if page != '':
         open('info.txt', 'a')
         old, new = [o for o in open('info.txt', 'r')], []
-        ltitle = page.xpath('//div/span/a/@title')
-        lhref = page.xpath('//div/span/a/@href')
+        ltitle = page.xpath('//div/table/tbody/tr/td/ul/li/div/span/a/@title')
+        lhref = page.xpath('//div/table/tbody/tr/td/ul/li/div/span/a/@href')
         for i in range(len(ltitle)):
             new.append(ltitle[i] + '\n')
             new.append('view-source: http://xgc.nju.edu.cn/xg/main.psp' +lhref[i] + '\n')

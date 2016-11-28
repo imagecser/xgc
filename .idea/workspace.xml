@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="af459949-05c9-4022-a7fc-29858d46c17e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tes.py" afterPath="$PROJECT_DIR$/tes.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/onetp.py" afterPath="$PROJECT_DIR$/onetp.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="onetp.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="onetp.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/onetp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="620">
-              <caret line="94" column="0" lean-forward="true" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
+            <state relative-caret-position="443">
+              <caret line="93" column="17" lean-forward="true" selection-start-line="93" selection-start-column="17" selection-end-line="93" selection-end-column="17" />
               <folding>
                 <element signature="e#23#39#0" expanded="true" />
               </folding>
@@ -39,18 +39,6 @@
             <state relative-caret-position="2840">
               <caret line="142" column="0" lean-forward="false" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tes.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tes.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-              <folding>
-                <element signature="e#17#27#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -90,8 +78,8 @@
         <option value="$PROJECT_DIR$/i_send.py" />
         <option value="$PROJECT_DIR$/info.txt" />
         <option value="$PROJECT_DIR$/tes.log" />
-        <option value="$PROJECT_DIR$/onetp.py" />
         <option value="$PROJECT_DIR$/tes.py" />
+        <option value="$PROJECT_DIR$/onetp.py" />
       </list>
     </option>
   </component>
@@ -364,7 +352,14 @@
       <option name="project" value="LOCAL" />
       <updated>1480212375063</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="test">
+      <created>1480321440954</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1480321440954</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView">
@@ -406,7 +401,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="timed out optimization" />
     <MESSAGE value="main pyfile" />
-    <option name="LAST_COMMIT_MESSAGE" value="main pyfile" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -715,22 +711,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/onetp.py">
+    <entry file="file://$PROJECT_DIR$/tes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="620">
-          <caret line="94" column="0" lean-forward="true" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
+        <state relative-caret-position="320">
+          <caret line="16" column="60" lean-forward="false" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="60" />
           <folding>
-            <element signature="e#23#39#0" expanded="true" />
+            <element signature="e#17#27#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tes.py">
+    <entry file="file://$PROJECT_DIR$/onetp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state relative-caret-position="443">
+          <caret line="93" column="17" lean-forward="true" selection-start-line="93" selection-start-column="17" selection-end-line="93" selection-end-column="17" />
           <folding>
-            <element signature="e#17#27#0" expanded="true" />
+            <element signature="e#23#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
