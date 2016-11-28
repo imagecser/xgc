@@ -19,11 +19,13 @@ cerurl = 'http://cer.nju.edu.cn/amserver/UI/Login'
 capurl = 'http://cer.nju.edu.cn/amserver/verify/image.jsp'
 maddr = ['lestdawn@163.com']
 logfile, postfile = 'main.log', 'post.log'
+opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookielib.CookieJar()))
 
 
 def get_th():
     itry, iloginout, ivisitout, ivisitun, itwe = 0, 0, 0, 0, 0
     while True:
+        global opener
         opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookielib.CookieJar()))
         opener.addheaders = [('User-agent', 'Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101 Firefox/38.0 Iceweasel/38.3.0')]
         try:
@@ -42,7 +44,6 @@ def get_th():
                     try:
                         page = opener.open('http://xgc.nju.edu.cn/xg/main.psp', timeout=10).read()
                         log(logfile, "Authentication for [%d] times" % itry, 'INFO')
-                        global opener
                         return page
                     except:
                         trace = traceback.format_exc()
@@ -84,8 +85,9 @@ def rewrite(post_read):
     page = re.findall(re.compile('h.+htm'), post_read)
     for ipage in page:
         ipageread = opener.open(ipage).read()
-        ipageread = str(ipageread).replace('href="/', 'href="http://xgc.nju.edu.cn/').replace('src="/', 'src="http://xgc.nju.edu.cn/')
-        open(ipage, 'w').write(ipageread)
+        ipageread = str(ipageread).replace('href="/', 'href="http://xgc.nju.edu.cn/').replace('src="/', 'src="http://xgc.nju.edu.cn/').replace("src='/", "src='http://xgc.nju.edu.cn/").replace("'src', '/", "'src', 'http://xgc.nju.edu.cn/")
+        ipage = re.findall(re.compile('psp/.+/page'), ipage)[0].replace('/', '')
+        open('html/' + ipage + '.htm', 'w').write(ipageread)
 
 
 def comp(page):
