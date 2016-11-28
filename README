@@ -1,0 +1,30 @@
+
+Dependencies:
+============================================
+Python 2.7.12
+
+Module Existed:
+============================================
+os, sys, time, subprocess, 
+urllib, urllib2, cookielib
+
+Module Required:
+============================================
+traceback, PIL, lxml, smtplib, logging
+
+Usage:
+============================================
+onetp.py	Main pyfile
+post.log	LOG for posted info
+main.log	LOG for running
+info.txt	cookies stored
+
+References:
+============================================
+http://www.lfd.uci.edu/~gohlke/pythonlibs/
+
+Copyright:
+============================================
+https://github.com/imagecser
+lestdawn@163.com
+imagecser
