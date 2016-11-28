@@ -95,10 +95,10 @@ def rewrite(post_read):
                           'href="http://xgc.nju.edu.cn/').replace('src="/',
                                                                   'src="http://xgc.nju.edu.cn/').replace(
             "src='/", "src='http://xgc.nju.edu.cn/").replace("'src', '/", "'src', 'http://xgc.nju.edu.cn/")
-        rewpath = 'xgc/c' + str(int(time.time())) + '.html'
+        name = str(int(time.time()))
+        rewpath = 'C:\Program Files\c' + name + '.html'
         open(rewpath, 'w').write(rew)
-        icserpage.append(rewpath)
-        post_read = post_read.replace(page[iurl], 'http://www.icser.me/' + icserpage[iurl])
+        post_read = post_read.replace(page[iurl], 'http://www.icser.me/xgc/c' + name + '.html')
     return post_read
 
 
