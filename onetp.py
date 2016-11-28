@@ -4,6 +4,7 @@ import urllib2
 import urllib
 import time
 import os
+import re
 import traceback
 from i_log import *
 from i_send import *
@@ -41,6 +42,7 @@ def get_th():
                     try:
                         page = opener.open('http://xgc.nju.edu.cn/xg/main.psp', timeout=10).read()
                         log(logfile, "Authentication for [%d] times" % itry, 'INFO')
+                        global opener
                         return page
                     except:
                         trace = traceback.format_exc()
@@ -78,6 +80,14 @@ def get_th():
     return ''
 
 
+def rewrite(post_read):
+    page = re.findall(re.compile('h.+htm'), post_read)
+    for ipage in page:
+        ipageread = opener.open(ipage).read()
+        ipageread = str(ipageread).replace('href="/', 'href="http://xgc.nju.edu.cn/').replace('src="/', 'src="http://xgc.nju.edu.cn/')
+        open(ipage, 'w').write(ipageread)
+
+
 def comp(page):
     if page != '':
         page = etree.HTML(page)
@@ -104,6 +114,7 @@ def join():
         post += item
     if post.replace(' ', '').replace('\n', '') != '':
         post = post.replace('\n\n', '\n')
+        rewrite(post)
         try:
             send_(maddr, post, u"学工园地更新动态")
             log(postfile, post, 'INFO')
