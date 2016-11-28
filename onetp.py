@@ -39,7 +39,7 @@ def get_th():
                 itry += 1
                 if len(html) > 2000:
                     try:
-                        page = etree.HTML(opener.open('http://xgc.nju.edu.cn/xg/main.psp', timeout=10).read())
+                        page = opener.open('http://xgc.nju.edu.cn/xg/main.psp', timeout=10).read()
                         log(logfile, "Authentication for [%d] times" % itry, 'INFO')
                         return page
                     except:
@@ -80,10 +80,11 @@ def get_th():
 
 def comp(page):
     if page != '':
+        page = etree.HTML(page)
         open('info.txt', 'a')
         old, new = [o for o in open('info.txt', 'r')], []
-        ltitle = page.xpath('//div/table/tbody/tr/td/ul/li/div/span/a/@title')
-        lhref = page.xpath('//div/table/tbody/tr/td/ul/li/div/span/a/@href')
+        ltitle = page.xpath('//tr/td/ul/li/div/span/a/@title')
+        lhref = page.xpath('//tr/td/ul/li/div/span/a/@href')
         for i in range(len(ltitle)):
             new.append(ltitle[i] + '\n')
             new.append('view-source: http://xgc.nju.edu.cn/xg/main.psp' +lhref[i] + '\n')
@@ -119,6 +120,4 @@ if __name__ == "__main__":
             trace = traceback.format_exc()
             log(logfile, trace, 'ERROR')
         finally:
-            time.sleep(2)
-            log(logfile, 'sleeping...', 'INFO')
             time.sleep(1800)
