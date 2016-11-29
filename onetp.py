@@ -97,7 +97,7 @@ def rewrite(post_read):
                                                                       'src="http://xgc.nju.edu.cn/').replace(
                 "src='/", "src='http://xgc.nju.edu.cn/").replace("'src', '/", "'src', 'http://xgc.nju.edu.cn/")
             name = str(int(time.time()))
-            rewpath = 'xgc/c' + name + '.html'
+            rewpath = 'C:\\inetpub\\wwwroot\\xgc\\c' + name + '.html'
             open(rewpath, 'w').write(rew)
             post_read = post_read.replace(page[iurl], 'http://www.icser.me/xgc/c' + name + '.html')
             time.sleep(0.1)
