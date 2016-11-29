@@ -82,30 +82,34 @@ def get_th():
 
 
 def rewrite(post_read):
-    icserpage = []
     page = re.findall(re.compile('h.+htm'), post_read)
+    opener.addheaders = [('User-agent', 'Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101 Firefox/38.0 Iceweasel/38.3.0')]
     for iurl in range(len(page)):
-        iresponse = opener.open(page[iurl]).read()
-        iresponse = str(iresponse).replace('\n', '')
-        ititle = re.findall('<html.+?</title>', iresponse)
-        rew = re.sub('> +? <', '>\n<', ititle[0])
-        ibody = re.findall('<div frag=.+?</div>.+?</div>.+?</td>', iresponse)
-        rew += '\n' + re.sub('> +? <', '>\n<', ibody[1]) + '\n' + '</body></html>'
-        rew = rew.replace('href="/',
-                          'href="http://xgc.nju.edu.cn/').replace('src="/',
-                                                                  'src="http://xgc.nju.edu.cn/').replace(
-            "src='/", "src='http://xgc.nju.edu.cn/").replace("'src', '/", "'src', 'http://xgc.nju.edu.cn/")
-        name = str(int(time.time()))
-        rewpath = 'C:\Program Files\c' + name + '.html'
-        open(rewpath, 'w').write(rew)
-        post_read = post_read.replace(page[iurl], 'http://www.icser.me/xgc/c' + name + '.html')
+        try:
+            iresponse = opener.open(page[iurl]).read()
+            iresponse = str(iresponse).replace('\n', '')
+            ititle = re.findall('<html.+?</title>', iresponse)
+            rew = re.sub('> +? <', '>\n<', ititle[0])
+            ibody = re.findall('<div frag=.+?</div>.+?</div>.+?</td>', iresponse)
+            rew += '\n' + re.sub('> +? <', '>\n<', ibody[1]) + '\n' + '</body></html>'
+            rew = rew.replace('href="/',
+                              'href="http://xgc.nju.edu.cn/').replace('src="/',
+                                                                      'src="http://xgc.nju.edu.cn/').replace(
+                "src='/", "src='http://xgc.nju.edu.cn/").replace("'src', '/", "'src', 'http://xgc.nju.edu.cn/")
+            name = str(int(time.time()))
+            rewpath = 'xgc/c' + name + '.html'
+            open(rewpath, 'w').write(rew)
+            post_read = post_read.replace(page[iurl], 'http://www.icser.me/xgc/c' + name + '.html')
+            time.sleep(0.1)
+        except:
+            log('main.log', 'rewrite error.' + page[iurl], 'ERROR')
     return post_read
 
 
 def comp(page):
+    finfo = open('info.txt', 'a')
     if page != '':
         page = etree.HTML(page)
-        open('info.txt', 'a')
         old, new = [o for o in open('info.txt', 'r')], []
         ltitle = page.xpath('//tr/td/ul/li/div/span/a/@title')
         lhref = page.xpath('//tr/td/ul/li/div/span/a/@href')
@@ -113,7 +117,7 @@ def comp(page):
             new.append(ltitle[i] + '\n')
             new.append('view-source: http://xgc.nju.edu.cn/xg/main.psp' +lhref[i] + '\n')
         res = [i for i in new if i not in old]
-        open('info.txt', 'a').writelines(res)
+        finfo.writelines(res)
         return res
     else:
         return []
@@ -145,4 +149,5 @@ if __name__ == "__main__":
             trace = traceback.format_exc()
             log(logfile, trace, 'ERROR')
         finally:
+            opener.close()
             time.sleep(1800)
