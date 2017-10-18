@@ -13,7 +13,7 @@ def send_(addr, msge, title):
         "to": ','.join(addr),
         "hostname": "smtp.qq.com",
         "username": "975909687",
-        "password": "qfvfuxlxncldbahj",
+        "password": "???",
         "mailsubject": title,
         "mailtext": msge,
         "mailencoding": "utf-8"
