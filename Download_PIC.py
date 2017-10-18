@@ -28,7 +28,7 @@ urlopener.addheaders.append(('User-Agent', 'Mozilla/5.0 (compatible; MISE 9.0; W
 h = urllib2.urlopen(hosturl)
 
 username = '9405257'
-password = 'nju697196'
+password = '???'
 values={'encoded':'true','goto':'aHR0cDovL3dlYnBsdXMubmp1LmVkdS5jbi94Zy9tYWluLnBzcA==','gotoOnFail':'','IDToken0':'','IDButton':'Submit','IDToken1':username, 'IDToken2':password, 'inputCode':authcode,'gx_charset':'UTF-8'}
 data=urllib.urlencode(values)
 
